@@ -65,6 +65,10 @@ RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY default /etc/nginx/sites-available/default
 
+#rights
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod 775 /var/www
+
 EXPOSE 80 22 443 
 
 CMD ["service" "php7.4-fpm", "start"]

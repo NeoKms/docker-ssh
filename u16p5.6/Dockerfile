@@ -61,6 +61,10 @@ RUN apt-get install -y --allow-unauthenticated \
 RUN systemctl is-enabled php5.6-fpm && systemctl enable php5.6-fpm
 RUN service php5.6-fpm start #docker exec  <containerID> service php5.6-fpm start
 
+#rights
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod 775 /var/www
+
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY default /etc/nginx/sites-available/default
